@@ -21,14 +21,14 @@ const ItemWrapper = styled.div`
   }
 `; 
 
-const Menu: any = ({ setSelectedItem }: any) => {
+const Menu: any = ({ setSelectedItem, amountOfBooksOnCart }: any) => {
   return (
     <MenuWrapper>
       <ItemWrapper onClick={() => setSelectedItem(BOOKS_LIST)}>
        Lista de Livros
       </ItemWrapper>
       <ItemWrapper onClick={() => setSelectedItem(CART)}>
-        Carrinho
+        Carrinho - {amountOfBooksOnCart > 0 ? amountOfBooksOnCart : 0}
       </ItemWrapper>
       <ItemWrapper onClick={() => setSelectedItem(CHECKOUT)}>
         Checkout
