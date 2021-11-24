@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const ListWrapper = styled.div`
   display: flex;
   padding: 20px;
+  flex-wrap: wrap;
 `;
 
 const CardWrapper = styled.div`
@@ -11,7 +12,8 @@ const CardWrapper = styled.div`
   height: 350px;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 10px
+  padding: 10px;
+  margin: 10px;
 `;
 
 const ImgWrapper = styled.div`
@@ -27,28 +29,55 @@ const InfoWrapper = styled.div`
 `;
 
 const BookButton = styled.button`
- 
 `;
+
+const booksList = [
+  {
+    imgSrc: 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg',
+    price: 40,
+    id: 1,
+  },
+  {
+    imgSrc: 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg',
+    price: 20,
+    id: 2,
+  },
+  {
+    imgSrc: 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg',
+    price: 25,
+    id: 3,
+  },
+  {
+    imgSrc: 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg',
+    price: 30,
+    id: 4,
+  },
+  {
+    imgSrc: 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg',
+    price: 70,
+    id: 5,
+  }
+]
 
 const imgSrc = 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg';
 
-function BooksList() {
-  const cardRender = () => {
-    return (
-      <CardWrapper>
+const BooksList: any = (props: any) => {
+  const cardRender = (book: any) =>
+    (
+      <CardWrapper key={book.id}>
         <ImgWrapper>
-         <img style={{ objectFit: 'contain', width: '250px', height: '270px' }} src={imgSrc} />
+         <img style={{ objectFit: 'contain', width: '250px', height: '270px' }} src={book.imgSrc} />
         </ImgWrapper>
       <InfoWrapper>
-        <span>R$ 40,00</span>
-        <BookButton onClick={() => console.log('clicked me')}>Adicione ao carriho</BookButton>
+        <span>R$ {book.price}</span>
+        <BookButton onClick={() => props.handleAddBoonOnCart(book)}>Adicione ao carriho</BookButton>
       </InfoWrapper>
       </CardWrapper>
     );
-  }
+
   return (
     <ListWrapper>
-      {cardRender()}
+      {booksList.map(book => cardRender(book))}
     </ListWrapper>
   );
 }

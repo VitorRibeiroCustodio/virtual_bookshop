@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { BOOKS_LIST, CART, CHECKOUT } from '../../App';
+
 const MenuWrapper = styled.div`
   width: 100%;
   height: 40px;
@@ -11,18 +13,26 @@ const MenuWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-function Menu() {
+const ItemWrapper = styled.div`
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+`; 
+
+const Menu: any = ({ setSelectedItem }: any) => {
   return (
     <MenuWrapper>
-      <div>
+      <ItemWrapper onClick={() => setSelectedItem(BOOKS_LIST)}>
        Lista de Livros
-      </div>
-      <div>
+      </ItemWrapper>
+      <ItemWrapper onClick={() => setSelectedItem(CART)}>
         Carrinho
-      </div>
-      <div>
+      </ItemWrapper>
+      <ItemWrapper onClick={() => setSelectedItem(CHECKOUT)}>
         Checkout
-      </div>
+      </ItemWrapper>
     </MenuWrapper>
   );
 }

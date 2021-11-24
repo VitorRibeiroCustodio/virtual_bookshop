@@ -1,4 +1,4 @@
-// import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Menu from './components/Menu';
 import BooksList from './components/BooksList';
@@ -8,11 +8,20 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
+export const BOOKS_LIST = 'BOOKS_LIST';
+export const CART = 'CART';
+export const CHECKOUT = 'CHECKOUT';
+
 function App() {
+  const [selectedItem, setSelectedItem] = useState(BOOKS_LIST);
+  const [booksOnCart, setBooksOnCart] = useState<any>([]);
+
+  const handleAddBoonOnCart = (book: any) => setBooksOnCart([...booksOnCart, book]);
+
   return (
     <Wrapper>
-      <Menu />
-      <BooksList />
+      <Menu setSelectedItem={setSelectedItem} />
+      { selectedItem === BOOKS_LIST && <BooksList handleAddBoonOnCart={handleAddBoonOnCart} /> }
     </Wrapper>
   );
 }
