@@ -59,8 +59,6 @@ const booksList = [
   }
 ]
 
-const imgSrc = 'https://images-na.ssl-images-amazon.com/images/I/71IYhitXqUL.jpg';
-
 const BooksList: any = (props: any) => {
   const cardRender = (book: any) =>
     (
