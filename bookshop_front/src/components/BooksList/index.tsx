@@ -1,35 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const ListWrapper = styled.div`
-  display: flex;
-  padding: 20px;
-  flex-wrap: wrap;
-`;
-
-const CardWrapper = styled.div`
-  width: 250px;
-  height: 350px;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-`;
-
-const ImgWrapper = styled.div`
-  border-bottom: 1px solid black;
-`;
-
-const InfoWrapper = styled.div`
-  height: 130px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const BookButton = styled.button`
-`;
+import './style.scss';
 
 const booksList = [
   {
@@ -72,21 +42,20 @@ const booksList = [
 const BooksList: any = (props: any) => {
   const cardRender = (book: any) =>
     (
-      <CardWrapper key={book.id}>
-        <ImgWrapper>
-         <img style={{ objectFit: 'contain', width: '250px', height: '270px' }} src={book.imgSrc} />
-        </ImgWrapper>
-      <InfoWrapper>
-        <span>R$ {book.price}</span>
-        <BookButton onClick={() => props.handleAddBoonOnCart(book)}>Adicione ao carriho</BookButton>
-      </InfoWrapper>
-      </CardWrapper>
+      <div className="card">
+        <img src={book.imgSrc} />
+        <div className="card-body">
+          <h2>{book.price}</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+          <h5 onClick={() => props.handleAddBoonOnCart(book)}>Adicione ao carrinho</h5>
+        </div>
+      </div>
     );
 
   return (
-    <ListWrapper>
+    <div className='cards'>
       {booksList.map(book => cardRender(book))}
-    </ListWrapper>
+    </div>
   );
 }
 
